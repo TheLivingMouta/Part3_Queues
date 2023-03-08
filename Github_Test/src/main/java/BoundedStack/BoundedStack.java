@@ -26,7 +26,7 @@ public class BoundedStack extends Stack{
     }
     
     public void push(String value){
-        if(size() >= capacity){
+        if(isFull()){
             throw new IllegalArgumentException();
         } 
         
