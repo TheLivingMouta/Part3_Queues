@@ -11,21 +11,22 @@ import java.util.Stack;
  * @author carol
  */
 public class BoundedStack extends Stack{
-    final int maxCapacity;
+    private static final int initialCapacity = 10;
+    private int capacity;
     
     public BoundedStack(){
-        maxCapacity = 10;
+        capacity = initialCapacity;
     }
     
     public BoundedStack(int value){
         if(value <= 0){
             throw new IllegalArgumentException();
         }
-        maxCapacity = value;
+        capacity = value;
     }
     
     public void push(String value){
-        if(size() >= maxCapacity){
+        if(size() >= capacity){
             throw new IllegalArgumentException();
         } 
         
@@ -34,7 +35,7 @@ public class BoundedStack extends Stack{
     }
     
     public boolean isFull(){
-        if(size() < maxCapacity){
+        if(size() < capacity){
             return true;
         }
         return false;
