@@ -13,25 +13,39 @@ public class BoundedQueue extends Queues{
     private final int maxCapacity;
     
     public BoundedQueue(){
+        super();
         maxCapacity = INITIAL_CAPACITY;
     }
     
     public BoundedQueue(int value){
+        super();
         if(value <= 0){
             throw new IllegalArgumentException();
         }
         maxCapacity = value;
     }
     
+    @Override
     public void enque(int value){
 
          if(size() >= maxCapacity){
             throw new IllegalArgumentException();
          }
          
-         enque(value);
-         
-        
+         enque(value);    
+    }
+    
+    public boolean isFull(){
+        if(size() < maxCapacity){
+            return true;
+        }
+        return false;
+    }
+    
+    //How to block methods from the Super class in a Sub-Class
+    @Override
+    public int peek(){
+        throw new UnsupportedOperationException("Feature not implemented");
     }
     
 }
