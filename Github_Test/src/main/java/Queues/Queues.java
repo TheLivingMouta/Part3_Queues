@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class Queues {
     protected Node first;
     protected Node last;
-    private int size;
+    protected int size;
     
     public int size(){
         return size;
