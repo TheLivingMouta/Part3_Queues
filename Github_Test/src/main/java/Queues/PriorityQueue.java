@@ -19,21 +19,29 @@ public class PriorityQueue extends Queues {
         }
         
         Node newNode = new Node(value);
-        Node current = first;
+        Node current = first.next;
+        Node previous = first;
         for(int i = 0; i < size(); i++){
-            if(last.data > newNode.data){
-                last.next = newNode;
+            if(last.data < newNode.data){
+                newNode.next = last;
                 last = newNode;
-            } else if(first.data > newNode.data){
-                first.next = newNode;
+            } else if(first.data < newNode.data){
+                newNode.next = first;
                 first = newNode;
             } else {
-                while(current > newNode){
-                    
+                while(current.data < newNode.data){
+                    previous = current;
+                    current = current.next;
                 }
+                
+                previous.next = newNode;
+                newNode.next = current;
                 
             }
         }
+        
+        size++;
+        
     }
 
  
