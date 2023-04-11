@@ -50,11 +50,7 @@ public class BoundedPriorityQueueSet {
         if(isFull() == true){
             throw new IllegalStateException();
         }
-        
-        if(){
-            throw new DuplicateElementException();
-        }
-        
+                
         for(int i = 0; i < size(); i++){
             if(last.data.compareTo(newNode.data) < 0){
                 newNode.next = last;
@@ -72,6 +68,10 @@ public class BoundedPriorityQueueSet {
                 newNode.next = current;
                 
             }
+        }
+        
+        if(value.equals()){
+            throw new DuplicateElementException();
         }
         
         size++;
