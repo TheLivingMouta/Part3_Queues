@@ -70,9 +70,9 @@ public class BoundedPriorityQueueSet {
             }
         }
         
-        if(value.equals()){
-            throw new DuplicateElementException();
-        }
+//        if(value.equals()){
+//            throw new DuplicateElementException();
+//        }
         
         size++;
         
