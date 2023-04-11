@@ -83,7 +83,7 @@ public abstract class Task implements Comparable {
         return Objects.equals(this.deadline, other.deadline);
     }
     
-    @Override
+//    @Override
     public int compareTo(LocalDate o) {
         if(this.deadline.compareTo(o) > 0){
             return 1;
