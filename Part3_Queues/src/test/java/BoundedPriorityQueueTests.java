@@ -93,6 +93,42 @@ public class BoundedPriorityQueueTests {
     }
     
     @Test
+    public void testRemove_RemovingSomethingNotPresent() {
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        Task s = new Task("Temp title1", "Temp Artist1",deadline);
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet();
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        instance.add(new Task("Temp title1", "Temp Artist1",deadline));
+        instance.add(new Task("Temp Title2", "Temp Artist2",deadline));
+        
+        Task expResult = null;
+        Task result = instance.remove(s);
+        assertEquals(expResult, result);
+        int expSize = 3;
+        assertEquals(expSize, instance.size());
+    } 
+    
+    @Test
+    public void testRemove_RemovingOneInstance() {
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        Task s = new Task("Temp title1", "Temp Artist1",deadline);
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet();
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        instance.add(new Task("Temp title1", "Temp Artist1",deadline));
+        instance.add(new Task("Temp Title", "Temp Artist",deadline));
+        
+        Task expResult = s;
+        Task result = instance.remove(s);
+        assertEquals(expResult, result);
+        int expSize = 2;
+        assertEquals(expSize, instance.size());
+        // Confirm it's not still there
+        expResult = s;
+        result = instance.remove(s);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
     public void testRemove_RemovingSingleInstanceWhereMultipleExist() {
         LocalDate deadline = LocalDate.parse("2023-04-11");
         Task s = new Task("Temp title1", "Temp Artist1",deadline);
@@ -102,13 +138,11 @@ public class BoundedPriorityQueueTests {
         instance.add(new Task("Temp Title", "Temp Artist",deadline));
         instance.add(new Task("Temp title1", "Temp Artist1",deadline));
         
-        boolean expResult = true;
-        boolean result = instance.remove(s);
+        Task expResult = s;
+        Task result = instance.remove(s);
         assertEquals(expResult, result);
         int expSize = 3;
         assertEquals(expSize, instance.size());
-        int expPos = 2;
-        assertEquals(expPos, instance.indexOf(s));
-    
+ 
     
 }
