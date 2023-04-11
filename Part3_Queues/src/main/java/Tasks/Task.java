@@ -6,12 +6,13 @@
 package Tasks;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
  * @author carol
  */
-public class Task {
+public abstract class Task implements Comparable {
 
  private String owner;
  private String description;
@@ -50,6 +51,41 @@ public class Task {
         if(deadline.compareTo(LocalDate.now()) != 0){
             this.deadline = deadline;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.owner);
+        hash = 71 * hash + Objects.hashCode(this.description);
+        hash = 71 * hash + Objects.hashCode(this.deadline);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Task other = (Task) obj;
+        if (!Objects.equals(this.owner, other.owner)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        return Objects.equals(this.deadline, other.deadline);
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        
     }
 
     @Override
