@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author carol
  */
-public abstract class Task implements Comparable {
+public abstract class Task implements Comparable<Task> {
 
  private String owner;
  private String description;
