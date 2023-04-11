@@ -10,8 +10,11 @@ import Tasks.Task;
  * @author carol
  */
 public class BoundedPriorityQueueSet {
+    private Node first;
+    private Node last;
     private static final int INITIAL_CAPACITY = 10;
     private final int maxCapacity;
+    private int size;
     
     public BoundedPriorityQueueSet(){
         super();
@@ -25,4 +28,28 @@ public class BoundedPriorityQueueSet {
         }
         maxCapacity = value;
     }
+    
+    public int size(){
+        return size;
+    }
+    
+    public boolean isEmpty(){
+        
+    }
+    
+    private static class Node {
+
+        private int data;
+        private Node next;
+
+        public Node(int value) {
+            this.data = value;
+        }
+        
+        public boolean hasNext(){
+            return next == null;
+        }
+
+    }
+    
 }
