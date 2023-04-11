@@ -71,4 +71,44 @@ public class BoundedPriorityQueueTests {
         boolean result = instance.isFull();
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testPeek(){
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet(1);
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        Task expResult = new Task("Temp title0", "Temp Artist0",deadline);
+        Task result = instance.peek();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testPeek_InvalidData(){
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet(1);
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        Task expResult = new Task("Temp title1", "Temp Artist1",deadline);
+        Task result = instance.peek();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testRemove_RemovingSingleInstanceWhereMultipleExist() {
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        Task s = new Task("Temp title1", "Temp Artist1",deadline);
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet();
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        instance.add(new Task("Temp title1", "Temp Artist1",deadline));
+        instance.add(new Task("Temp Title", "Temp Artist",deadline));
+        instance.add(new Task("Temp title1", "Temp Artist1",deadline));
+        
+        boolean expResult = true;
+        boolean result = instance.remove(s);
+        assertEquals(expResult, result);
+        int expSize = 3;
+        assertEquals(expSize, instance.size());
+        int expPos = 2;
+        assertEquals(expPos, instance.indexOf(s));
+    
+    
 }
