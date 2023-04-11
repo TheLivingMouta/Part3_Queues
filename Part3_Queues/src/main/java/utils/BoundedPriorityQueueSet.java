@@ -75,13 +75,27 @@ public class BoundedPriorityQueueSet {
         }
         
         size++;
+        
+        Node position = first;
+        int count = 0;
+        
+        while(position != null){
+            if(position.data == value){
+                return count;
+            } else {
+                position = position.next;
+                count++;
+            }
+        
+        }
+        return -1;
     }
     
     public Task peek(){
         return first.data;
     }
     
-    public Task removew(){
+    public Task remove(){
         
         if(first == null){
             throw new NoSuchElementException();
@@ -91,6 +105,10 @@ public class BoundedPriorityQueueSet {
         temp = first.data;
         first = first.next;
         size--;
+        
+        if(size == 0){
+            last = null;
+        }
         
         return temp;
     }
