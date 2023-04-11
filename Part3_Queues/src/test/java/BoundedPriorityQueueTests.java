@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import Tasks.Task;
+import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
@@ -52,5 +53,22 @@ public class BoundedPriorityQueueTests {
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
     }
-
+    
+    @Test
+    public void testIsFull_EmptyQueue() {
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet();
+        boolean expResult = false;
+        boolean result = instance.isFull();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIsFull() {
+        BoundedPriorityQueueSet instance = new BoundedPriorityQueueSet(1);
+        LocalDate deadline = LocalDate.parse("2023-04-11");
+        instance.add(new Task("Temp title0", "Temp Artist0",deadline));
+        boolean expResult = true;
+        boolean result = instance.isFull();
+        assertEquals(expResult, result);
+    }
 }
